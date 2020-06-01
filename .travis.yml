@@ -9,7 +9,6 @@ before_install:
 before_script:
     - docker-compose run --rm django hello_django/manage.py test
 
-
 script:
     - docker-compose run --rm django hello_django/manage.py migrate
 

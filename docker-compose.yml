@@ -3,7 +3,7 @@ version: '3'
 services:
 
     django:
-        image: soumya9v/Docker-django-Postgres:latest
+        image: soumya9v/docker-django-postgres:latest
         build: 
             context: .
             dockerfile: Dockerfile.dev 
