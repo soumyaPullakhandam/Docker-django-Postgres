@@ -1,0 +1,3 @@
+POSTGRES_DB=hellodocker_db
+POSTGRES_USER=soumya
+POSTGRES_PASSWORD=nextapp

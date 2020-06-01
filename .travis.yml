@@ -1,0 +1,19 @@
+sudo: required
+
+service:
+    - docker
+
+before_install:
+    - docker-compose up -d --build
+
+before_script:
+    - docker-compose run --rm django hello_django/manage.py test
+
+script:
+    - docker-compose run --rm django hello_django/manage.py migrate
+
+after_success:
+    - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+
+    - docker-compose build --pull
+    - docker push

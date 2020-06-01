@@ -1,0 +1,31 @@
+FROM python:3.8.0-alpine
+
+# set environment variables
+ENV PYTHONDONTWRITEBYTECODE 1
+ENV PYTHONUNBUFFERED 1
+
+# install psycopg2 dependencies
+RUN apk update \
+    && apk add postgresql-dev gcc python3-dev musl-dev
+
+RUN mkdir -p /app/djangoapp
+
+# install dependencies
+RUN pip install --upgrade pip
+COPY requirement.txt /app/djangoapp/
+
+WORKDIR '/app/djangoapp'
+
+RUN pip install -r requirement.txt
+
+
+COPY . /app/djangoapp
+RUN  cd hello_django && python manage.py collectstatic --no-input
+
+# expose the port 8000
+EXPOSE 8000
+
+CMD ["gunicorn", "-c", "config/gunicorn/conf.py", "--bind", ":8000", "--chdir", "hello_django", "hello_django.wsgi:application"]
+
+
+
