@@ -5,12 +5,12 @@ services:
     django:
         image: soumya9v/docker-django-gunicon:latest
         build: 
-            context: .
+            context: ./hello_django
             dockerfile: Dockerfile.dev 
         volumes:
             - .:/app/djangoapp
-            - static_volume:/app/djangoapp/static  
-            - media_volume:/app/djangoapp/media 
+            - static_volume:/app/djangoapp/hello_django/static  
+            - media_volume:/app/djangoapp/hello_django/media 
         networks:  
             - nginx_network
             - db_network
@@ -26,12 +26,12 @@ services:
         ports:
             - 8000:80
         build: 
-            context: ./config/nginx
+            context: ./nginx
             dockerfile: Dockerfile.dev 
         volumes:
-            # - ./config/nginx/conf.d:/etc/nginx/conf.d
-            - static_volume:/app/djangoapp/static  
-            - media_volume:/app/djangoapp/media 
+            # - ./nginx/conf.d:/etc/nginx/conf.d
+            - static_volume:/app/djangoapp/hello_django/static  
+            - media_volume:/app/djangoapp/hello_django/media 
         depends_on: 
             - django
         networks: 
@@ -42,10 +42,10 @@ services:
         # image: postgres:10.0-alpine
         container_name: db
         build: 
-            context: ./config/db
+            context: ./db
             dockerfile: Dockerfile.dev 
         env_file:
-            - config/db/db_env
+            - db/db_env
         networks:
             - db_network
         volumes:

@@ -38,6 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'whitenoise.runserver_nostatic',
     'django.contrib.staticfiles',
+    'poll.apps.PollConfig',
+
 ]
 
 MIDDLEWARE = [
@@ -134,11 +136,14 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 # as declared in NginX conf, it must match /app/djangoapp/static/
-STATIC_ROOT = os.path.join(os.path.dirname(BASE_DIR), 'static')
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+
 # STATICFILES_DIRS = [
 #     os.path.join(BASE_DIR, "static"),
 # ]
 
 
 # do the same for media files, it must match /app/djangoapp/media/
-MEDIA_ROOT = os.path.join(os.path.dirname(BASE_DIR), 'media')
+# MEDIA_ROOT = os.path.join(os.path.dirname(BASE_DIR), 'media')
