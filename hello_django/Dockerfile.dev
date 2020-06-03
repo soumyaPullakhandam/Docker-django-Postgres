@@ -29,4 +29,4 @@ ENTRYPOINT ["/app/djangoapp/hello_django/entrypoint.sh"]
 # expose the port 8000
 EXPOSE 8000
 
-CMD ["gunicorn", "-c", "/app/djangoapp/hello_django/gunicorn/conf.py", "--bind", ":8000", "--chdir", "hello_django", "hello_django.wsgi:application"]
+CMD ["gunicorn", "--bind", ":8000", "--chdir", "hello_django", "hello_django.wsgi:application"]
