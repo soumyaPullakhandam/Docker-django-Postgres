@@ -7,6 +7,7 @@ services:
         build: 
             context: ./hello_django
             dockerfile: Dockerfile.dev 
+        # command: gunicorn hello_django/djangoapp.wsgi:application --bind 0.0.0.0:8000
         volumes:
             - .:/app/djangoapp
             - static_volume:/app/djangoapp/hello_django/static  

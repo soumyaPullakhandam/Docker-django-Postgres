@@ -1,5 +1,8 @@
 FROM python:3.8.0-alpine
 
+RUN mkdir -p /app/djangoapp
+WORKDIR /app/djangoapp
+
 # set environment variables
 ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
@@ -8,22 +11,17 @@ ENV PYTHONUNBUFFERED 1
 RUN apk update \
     && apk add postgresql-dev gcc python3-dev musl-dev
 
-RUN mkdir -p /app/djangoapp
 
 # install dependencies
 RUN pip install --upgrade pip
 COPY requirement.txt /app/djangoapp/
-
-WORKDIR '/app/djangoapp'
-
 RUN pip install -r requirement.txt
 
 # copy entrypoint.sh
-COPY ./entrypoint.sh ./entrypoint.sh
+COPY ./entrypoint.sh /app/djangoapp/hello_django/entrypoint.sh
 
-COPY . /app/djangoapp
-
-# RUN  cd hello_django && python manage.py collectstatic --no-input
+# copy app
+COPY . /app/djangoapp/
 
 # run entrypoint.sh
 ENTRYPOINT ["/app/djangoapp/hello_django/entrypoint.sh"]
