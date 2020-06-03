@@ -18,9 +18,15 @@ WORKDIR '/app/djangoapp'
 
 RUN pip install -r requirement.txt
 
+# copy entrypoint.sh
+COPY ./entrypoint.sh ./entrypoint.sh
 
 COPY . /app/djangoapp
-RUN  cd hello_django && python manage.py collectstatic --no-input
+
+# RUN  cd hello_django && python manage.py collectstatic --no-input
+
+# run entrypoint.sh
+ENTRYPOINT ["/app/djangoapp/entrypoint.sh"]
 
 # expose the port 8000
 EXPOSE 8000
