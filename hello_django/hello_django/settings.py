@@ -134,7 +134,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
-
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 # as declared in NginX conf, it must match /app/djangoapp/static/
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')

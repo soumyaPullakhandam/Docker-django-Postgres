@@ -11,10 +11,10 @@ then
     echo "PostgreSQL started"
 fi
 
-# cd hello_django 
-
-python manage.py collectstatic --no-input
-python manage.py migrate
-#  cd ..
+cd hello_django 
+ls
+python3 manage.py collectstatic --no-input
+python3 manage.py migrate
+cd ..
 
 exec "$@"
