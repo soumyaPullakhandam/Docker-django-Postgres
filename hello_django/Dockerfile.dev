@@ -18,11 +18,14 @@ COPY requirement.txt /app/djangoapp/
 RUN pip install -r requirement.txt
 
 # copy entrypoint.sh
-# COPY ./entrypoint.sh /app/djangoapp/hello_django/entrypoint.sh
+COPY ./entrypoint.sh /app/djangoapp/hello_django/entrypoint.sh
+
+RUN chmod +x /app/djangoapp/hello_django/entrypoint.sh
+RUN chmod 777 /app/djangoapp/hello_django/entrypoint.sh \
+    && ln -s /app/djangoapp/hello_django/entrypoint.sh /
 
 # copy app
 COPY . /app/djangoapp/
-RUN chmod 755 entrypoint.sh
 
 # run entrypoint.sh
 ENTRYPOINT ["/app/djangoapp/hello_django/entrypoint.sh"]
