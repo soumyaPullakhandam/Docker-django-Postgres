@@ -11,11 +11,13 @@ then
     echo "PostgreSQL started"
 fi
 
-[ -f manage.py ] && echo "Found" || cd hello_django
+#[ -f manage.py ] && echo "Found" || cd hello_django
 
-ls
-python3 manage.py collectstatic --no-input
-python3 manage.py migrate
+# python3 manage.py collectstatic --no-input
+# python3 manage.py migrate
+
+docker-compose run --rm django hello_django/manage.py migrate
+docker-compose run --rm django hello_django/manage.py collectstatic --no-input
 
 #[ -f manage.py ] && cd .. || echo "Found"
 #ls
