@@ -25,7 +25,7 @@ RUN chmod 777 /app/djangoapp/hello_django/entrypoint.sh \
     && ln -s /app/djangoapp/hello_django/entrypoint.sh /
 
 # copy app
-COPY . /app/djangoapp/
+COPY . .
 
 # run entrypoint.sh
 ENTRYPOINT ["/app/djangoapp/hello_django/entrypoint.sh"]
