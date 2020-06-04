@@ -17,6 +17,6 @@ ls
 python3 manage.py collectstatic --no-input
 python3 manage.py migrate
 
-[ -f manage.py ] && cd .. || echo "Found"
-ls
+#[ -f manage.py ] && cd .. || echo "Found"
+#ls
 exec "$@"
