@@ -11,26 +11,24 @@ then
     echo "PostgreSQL started"
 fi
 
-if [ -f manage.py ];
-then
-  echo "Found"
-else
-  cd hello_django
-fi
+# if [ -f manage.py ];
+# then
+#   echo "Found"
+# else
+#   cd hello_django
+# fi
 
-python3 manage.py collectstatic --no-input
-python3 manage.py migrate
+# python3 manage.py collectstatic --no-input
+# python3 manage.py migrate
 
-# docker-compose run --rm django hello_django/manage.py migrate
-# docker-compose run --rm django hello_django/manage.py collectstatic --no-input
 
-if [ -f manage.py ]
-then
-  cd ..
-else 
-  echo "Found"
-fi
+# if [ -f manage.py ]
+# then
+#   cd ..
+# else 
+#   echo "Found"
+# fi
 
-#ls
+ls
 
 exec "$@"
