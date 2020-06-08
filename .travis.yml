@@ -1,19 +1,17 @@
 sudo: required
-
 service:
     - docker
-
+addons:
+    ssh_known_hosts: 161.35.53.190
 before_install:
+    - openssl aes-256-cbc -K $encrypted_db2095f63ba3_key -iv $encrypted_db2095f63ba3_iv
+        -in deploy_rsa.enc -out deploy_rsa -d
     - docker-compose up -d --build
-
 before_script:
     - docker-compose run --rm django hello_django/manage.py test
-
 script:
     - docker-compose run --rm django hello_django/manage.py migrate
-
 after_success:
     - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
-
     - docker-compose build --pull
     - docker-compose push
