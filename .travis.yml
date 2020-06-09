@@ -14,11 +14,9 @@ before_install:
     - echo -e "Host $SERVER_IP_ADDRESS\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
     - ssh-add ./deploy_key
     - ssh -i ./deploy_key root@161.35.53.190 ls
-    #- ls
 
 after_success:
-    #- ssh -i ./deploy_key root@161.35.53.190 pwd
-    - ls
+    - ssh -i ./deploy_key root@161.35.53.190 cd Appa && docker-compose up -d --build
     # - cd Appa
     # - docker-compose up -d --build
 
@@ -26,8 +24,9 @@ after_success:
 # before_script:
 #     - docker-compose run --rm django hello_django/manage.py test
 
-#script:
-    # - docker-compose run --rm django hello_django/manage.py migrate
+script:
+    - ssh -i ./deploy_key root@161.35.53.190 ls
+    #  - docker-compose run --rm django hello_django/manage.py migrate
 
 # deploy:
 #     - provider: script
