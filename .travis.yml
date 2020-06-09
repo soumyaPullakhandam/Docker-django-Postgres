@@ -31,6 +31,7 @@ script:
 deploy:
     - provider: script
       skip_cleanup: true
-      script: ssh -i ./deploy_key root@161.35.53.190 "cd Appa; docker-compose up -d --build"
+      script: ssh -i ./deploy_key root@161.35.53.190 "cd MyApp; docker-compose up -d --build"
       on:
         branch: master
+  
