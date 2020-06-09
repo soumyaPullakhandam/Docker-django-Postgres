@@ -15,8 +15,8 @@ before_install:
     - ssh-add ./deploy_key
     # - ssh -i ./deploy_key root@161.35.53.190 pwd
 
-after_success:
-    - ssh -i ./deploy_key root@161.35.53.190 "cd Appa; docker-compose up -d --build"
+# after_success:
+#     - ssh -i ./deploy_key root@161.35.53.190 "cd Appa; docker-compose up -d --build"
     # - cd Appa
     # - docker-compose up -d --build
 
@@ -28,9 +28,9 @@ script:
     - ssh -i ./deploy_key root@161.35.53.190 ls
     #  - docker-compose run --rm django hello_django/manage.py migrate
 
-# deploy:
-#     - provider: script
-#       skip_cleanup: true
-#       script: docker-compose up -d --build
-#       on:
-#         branch: master
+deploy:
+    - provider: script
+      skip_cleanup: true
+      script: ssh -i ./deploy_key root@161.35.53.190 "cd Appa; docker-compose up -d --build"
+      on:
+        branch: master
