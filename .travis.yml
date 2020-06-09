@@ -15,7 +15,7 @@ before_install:
     - ssh-add ./deploy_key
     - ssh -i ./deploy_key root@161.35.53.190 pwd
     - echo "BEFORE INSTALL START"
-    - gem install bundler
+    - sudo gem install bundler
     - echo "BEFORE INSTALL END"
 
 after_success:
