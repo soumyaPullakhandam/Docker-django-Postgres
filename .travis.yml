@@ -18,8 +18,6 @@ before_install:
 after_success:
     - cd Appa
     - docker-compose up -d --build
-    on:
-        branch: master
 
 
 # before_script:
