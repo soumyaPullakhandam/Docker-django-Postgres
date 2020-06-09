@@ -15,15 +15,22 @@ before_install:
     - ssh-add ./deploy_key
     - ssh -i ./deploy_key root@161.35.53.190
 
-before_script:
-    - docker-compose run --rm django hello_django/manage.py test
-
-script:
-    - docker-compose run --rm django hello_django/manage.py migrate
-
-deploy:
-    - provider: script
-      skip_cleanup: true
-      script: docker-compose up -d --build
-      on:
+after_success:
+    - cd Appa
+    - docker-compose up -d --build
+    on:
         branch: master
+
+
+# before_script:
+#     - docker-compose run --rm django hello_django/manage.py test
+
+# script:
+#     - docker-compose run --rm django hello_django/manage.py migrate
+
+# deploy:
+#     - provider: script
+#       skip_cleanup: true
+#       script: docker-compose up -d --build
+#       on:
+#         branch: master
