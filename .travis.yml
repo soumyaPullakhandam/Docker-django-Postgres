@@ -14,6 +14,9 @@ before_install:
     - echo -e "Host $SERVER_IP_ADDRESS\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
     - ssh-add ./deploy_key
     - ssh -i ./deploy_key root@161.35.53.190 pwd
+    - echo "BEFORE INSTALL START"
+    - gem install bundler
+    - echo "BEFORE INSTALL END"
 
 after_success:
     - cd Appa
@@ -23,8 +26,8 @@ after_success:
 # before_script:
 #     - docker-compose run --rm django hello_django/manage.py test
 
-# script:
-#     - docker-compose run --rm django hello_django/manage.py migrate
+#script:
+    # - docker-compose run --rm django hello_django/manage.py migrate
 
 # deploy:
 #     - provider: script
