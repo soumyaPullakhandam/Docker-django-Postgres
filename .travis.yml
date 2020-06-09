@@ -3,8 +3,8 @@ sudo: required
 services:
     - docker
 
-addons:
-    ssh_known_hosts: 161.35.53.190
+env:
+    - SERVER_IP_ADDRESS=161.35.53.190
 
 before_install:
     - openssl aes-256-cbc -K $encrypted_dfdcfd5172af_key -iv $encrypted_dfdcfd5172af_iv
@@ -13,7 +13,7 @@ before_install:
     - chmod 600 ./deploy_key
     - echo -e "Host $SERVER_IP_ADDRESS\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
     - ssh-add ./deploy_key
-    - ssh -i ./deploy_key root@138.68.163.126
+    - ssh -i ./deploy_key root@161.35.53.190
 
 before_script:
     - docker-compose run --rm django hello_django/manage.py test
